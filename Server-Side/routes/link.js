@@ -7,6 +7,7 @@ const { postLink, links,  viewCount,like,unlike,linkDelete, } = require("../cont
 const { requireSignin } = require("../controllers/auth");
 
 router.post("/post-link", requireSignin, postLink);
+//router.get("/links/:page", links);
 router.get("/links", links);
 router.put("/view-count/:linkId", viewCount);
 router.put("/like", requireSignin, like);
