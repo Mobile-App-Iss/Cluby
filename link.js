@@ -1,27 +1,17 @@
-const mongoose = require("mongoose");
-const { Schema, ObjectId } = mongoose;
+const express = require("express");
 
-const linkSchema = new mongoose.Schema(
-  {
-    link: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    title: {
-      type: String,
-      trim: true,
-      required: true,
-    },
-    urlPreview: {},
-    postedBy: {
-      type: ObjectId,
-      ref: "User",
-    },
-    views: { type: Number, default: 0 },
-    likes: [{ type: ObjectId, ref: "User" }],
-  },
-  { timestamps: true }
-);
+const router = express.Router();
 
-module.exports = mongoose.model("Link", linkSchema);
+// controllers
+const { postLink, links,  viewCount,like,unlike,linkDelete, } = require("../controllers/link");
+const { requireSignin } = require("../controllers/auth");
+
+router.post("/post-link", requireSignin, postLink);
+router.get("/links", links);
+router.put("/view-count/:linkId", viewCount);
+router.put("/like", requireSignin, like);
+router.put("/unlike", requireSignin, unlike);
+router.delete("/link-delete/:linkId", requireSignin, linkDelete);
+
+
+module.exports = router;
