@@ -3,7 +3,7 @@ Cluby is a social media mobile app for university students to see all their club
 
 To run the app with expo on your mobile you need to run :
 1: npm i localtunnel
-2: lt --port -8000
+2: lt --port 8000
 
 When the link appears copy paste it in the confing file under:
 API="(paste link here)/api";
